@@ -18,10 +18,20 @@
     "nodemon": "^1.14.11"
   },
   "dependencies": {
+    "body": "^5.1.0",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "lodash": "^4.17.5",
-    "mongoose": "^5.0.8"
-  }
+    "mongoose": "^5.0.8",
+    "parser": "^0.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattyHendrick/assignment-one.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MattyHendrick/assignment-one/issues"
+  },
+  "homepage": "https://github.com/MattyHendrick/assignment-one#readme"
 }
