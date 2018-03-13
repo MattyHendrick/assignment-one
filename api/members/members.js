@@ -2,7 +2,7 @@ export const members = [
   {
     'name': 'Jeff Brownrigg',
     'address': 'Graigue',
-    'phone_number': '0627384927',
+    'phone_number': '0867384927',
   },
   {
     'name': 'Brian Hayden',
