@@ -1,52 +1,86 @@
 import express from 'express';
-import {members} from './members';
+import Members from './memberModel';
+import _ from 'lodash';
 
 const router = express.Router(); // eslint-disable-line
 
 router.get('/', (req, res) => {
-  res.send({members: members});
+  Members.find((err, members) => {
+    if (err) return handleError(res, err);
+    return res.json(200, members);
+  });
 });
 
-// Adding a memeber
+// router.post('/', (req, res) => {
+//   Member.create(req.body, function(err, member) {
+//     if (err) return handleError(res, err);
+//     return res.json(201, member);
+//   });
+// });
+
+// Adding a member
 router.post('/', (req, res) => {
-        let newMember = req.body;
+        const newMember = req.body;
         if (newMember) {
-          members.push({name: newMember.name, address: newMember.address,
-          phone_number: newMember.phone_number});
-          res.status(201).send({message: 'Member Created'});
-      } else {
-            res.status(400).send({message:
-            'Unable to find Member in request. No Member Found in body'});
-      }
-});
+               Members.create(newMember, (err, member) => {
+                  if (err) return handleError(res, err);
+                      return res.status(201).json(member);
+              });
+          } else {
+             return handleError(res, err);
+          }
+    });
+
+    // get member
+    router.get('/:id', (req, res) => {
+        const id = req.params.id;
+        Members.findById(id, (err, member) => {
+            if (err) return handleError(res, err);
+            res.format({
+                'application/xml': function() {
+                  const memberS = member.toObject();
+                  return res.status(201).send(j2x({member: memberS}));
+                },
+                'default': function() {
+                  return res.status(201).json(member);
+                },
+              });
+      } );
+    });
+
 // Update a member
-router.put('/:id', (req, res) => {
-     const key = req.params.id;
-     const updateMember = req.body;
-     const index = members.map((members)=>{
-return members.phone_number;
-}).indexOf(key);
-            if (index !== -1) {
-               members.splice(index, 1, {name: updateMember.name, address: updateMember.address,
-               phone_number: updateMember.phone_number});
-               res.status(200).send({message: 'Member Updated'});
-              } else {
-          res.status(400).send({message: 'Unable to find Member in request. No Member Found in body'});
-      }
+router.put('/:id', (req, res) =>{
+  if (req.body._id) delete req.body._id;
+  Members.findById(req.params.id, (err, member) =>{
+    if (err) return handleError(res, err);
+    if (!member) return res.send(404);
+    const updated = _.merge(member, req.body);
+    updated.save((err) => {
+     if (err) return handleError(res, err);
+     return res.json(201, member);
+      });
+  });
 });
 
 // Delete a member
 router.delete('/:id', (req, res) => {
-     const key = req.params.id;
-     const index = members.map((members)=>{
-return members.phone_number;
-}).indexOf(key);
-    if (index > -1) {
-members.splice(index, 1);
-        res.status(200).send({message: 'Deleted member with phone_number: ${key} '});
-    } else {
-      res.status(400).send({message: 'Unable to find Member with phone_number: ${key} . No member has been Deleted'});
-      }
+    Members.findById(req.params.id, (err, member) => {
+      if (err) return handleError(res, err);
+      if (!member) return res.send(404);
+      member.remove(function(err) {
+        if (err) return handleError(res, err);
+        return res.send(204).json(member);
+      });
+    });
 });
+// /**
+//  * Handle general errors.
+//  * @param {object} res The response object
+//  * @param {object} err The error object.
+//  * @return {object} The response object
+//  */
+function handleError(res, err) {
+  return res.status(500).send(err);
+};
 
 export default router;
