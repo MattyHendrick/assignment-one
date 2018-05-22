@@ -4,13 +4,10 @@ import should from 'should'; // eslint-disable-line
 
 
 describe('Members API unit test', function() {
-this.timeout(120000);
+this.timeout(170000);
 it('should return collection of JSON documents', function(done) {
   supertest(app)
   .get('/api/members')
-
-    .set('Authorization', 'BEARER eyJhbGciOiJIUzI1NiJ9.c2hhbmU.frZpcXx9xrTuE01f8NfZ57-GV6vnbTlP8QnSA_HTQBQ')
-
   .expect('Content-type', /json/)
   .expect(200)
   .end(function(err, res) {
@@ -29,9 +26,9 @@ it('should return collection of JSON documents', function(done) {
     supertest(app)
     .post('/api/members')
 
-    .set('Authorization', 'BEARER eyJhbGciOiJIUzI1NiJ9.c2hhbmU.frZpcXx9xrTuE01f8NfZ57-GV6vnbTlP8QnSA_HTQBQ')
+    .set('Authorization', 'BEARER eyJhbGciOiJIUzI1NiJ9.bHVrZQ.3Z7oJqnzDO1qGwvCb9HJL9oRe1mqxgepHlUQUjn9cuY')
 
-    .send({ name: 'Darragh Hendrick'address: 'Tombrack',
+    .send({ name: 'Darragh Hendrick', address: 'Tombrack',
     dob: '19/12/1988',
     phoneNumber: '0862677352',})
     .expect('Content-type', /json/)
@@ -51,7 +48,7 @@ it('should update a member', function(done) {
     const superserver = supertest(app);
     superserver
     .get('/api/members')
-    .set('Authorization', 'BEARER eyJhbGciOiJIUzI1NiJ9.c2hhbmU.frZpcXx9xrTuE01f8NfZ57-GV6vnbTlP8QnSA_HTQBQ')
+    .set('Authorization', 'BEARER eyJhbGciOiJIUzI1NiJ9.bHVrZQ.3Z7oJqnzDO1qGwvCb9HJL9oRe1mqxgepHlUQUjn9cuY')
     .expect('Content-type', /json/)
     .expect(200)
     .expect('Content-type', /json/)
@@ -80,7 +77,7 @@ it('should update a member', function(done) {
     const superserver = supertest(app);
     superserver
     .get('/api/members')
-    .set('Authorization', 'BEARER eyJhbGciOiJIUzI1NiJ9.c2hhbmU.frZpcXx9xrTuE01f8NfZ57-GV6vnbTlP8QnSA_HTQBQ')
+    .set('Authorization', 'BEARER eyJhbGciOiJIUzI1NiJ9.bHVrZQ.3Z7oJqnzDO1qGwvCb9HJL9oRe1mqxgepHlUQUjn9cuY')
     .expect('Content-type', /json/)
     .expect(200)
     .expect('Content-type', /json/)

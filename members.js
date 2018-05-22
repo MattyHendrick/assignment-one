@@ -1,3 +1,5 @@
+import memberModel from './api/members/memberModel';
+
 export const members = [
   {
     'name': 'Jeff Brownrigg',

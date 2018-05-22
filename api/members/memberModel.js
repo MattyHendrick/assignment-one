@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const memberSchema = new Schema({
   name: {type: String},
   address: {type: String},
-  dob: {type: Date},
-  phoneNumber: {type: Number},
+  dob: {type: String, required:true},
+  phoneNumber: {type: String},
 });
 
 export default mongoose.model('members', memberSchema);

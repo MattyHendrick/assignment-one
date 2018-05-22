@@ -36,22 +36,14 @@ router.post('/', (req, res) => {
         const id = req.params.id;
         Members.findById(id, (err, member) => {
             if (err) return handleError(res, err);
-            res.format({
-                'application/xml': function() {
-                  const memberS = member.toObject();
-                  return res.status(201).send(j2x({member: memberS}));
-                },
-                'default': function() {
-                  return res.status(201).json(member);
-                },
-              });
+            return res.status(201).json(member);
       } );
     });
 
 // Update a member
-router.put('/:id', (req, res) =>{
+router.put('/:id', (req, res) => {
   if (req.body._id) delete req.body._id;
-  Members.findById(req.params.id, (err, member) =>{
+  Members.findById(req.params.id, (err, member) => {
     if (err) return handleError(res, err);
     if (!member) return res.send(404);
     const updated = _.merge(member, req.body);

@@ -24,10 +24,11 @@ const port = process.env.PORT;
 
 // configure body-parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded());
 app.use('/api/members', membersRouter);
 app.use(express.static('public'));
 app.use('/api/users', userRouter);
+app.use('/api/members', passport.authenticate('jwt', {session: false}), membersRouter);
 
 
 app.listen(port, () => {
@@ -46,16 +47,16 @@ if (process.env.NODE_ENV == 'test') {
     mongoose.connect(process.env.mongoDB);
   }
 
-  mongoose.connection.on('error', (err) => {
-    console.error('MongoDB connection error: ' + err);
-    process.exit(-1);
-  });
+ mongoose.connection.on('error', (err) => {
+   console.error('MongoDB connection error: ' + err);
+   process.exit(-1);
+ });
 
+ mongoose.connection.on('error', (err) => {
+   console.error('MongoDB connection error: ' + err);
+   process.exit(-1);
+ });
 
-  mongoose.connection.on('error', (err) => {
-    console.error('MongoDB connection error: ' + err);
-    process.exit(-1);
-  });
 
   app.use('/api/members', passport.authenticate('jwt', {session: false}), membersRouter);
 
