@@ -4,7 +4,7 @@ import should from 'should'; // eslint-disable-line
 
 
 describe('Members API unit test', function() {
-this.timeout(170000);
+this.timeout(140000);
 it('should return collection of JSON documents', function(done) {
   supertest(app)
   .get('/api/members')
@@ -22,6 +22,8 @@ it('should return collection of JSON documents', function(done) {
 
  // add a Member
   it('should add a member', function(done) {
+
+    this.timeout(140000);
     // post to /api/members
     supertest(app)
     .post('/api/members')
@@ -45,6 +47,7 @@ it('should return collection of JSON documents', function(done) {
 
 // update a member
 it('should update a member', function(done) {
+    this.timeout(140000);
     const superserver = supertest(app);
     superserver
     .get('/api/members')
@@ -74,6 +77,7 @@ it('should update a member', function(done) {
 
   // delete a member
   it('should delete a member', function(done) {
+    this.timeout(140000);
     const superserver = supertest(app);
     superserver
     .get('/api/members')

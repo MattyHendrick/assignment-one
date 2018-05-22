@@ -1,96 +1,58 @@
 {
   "stats": {
     "suites": 2,
-    "tests": 7,
-    "passes": 2,
+    "tests": 5,
+    "passes": 4,
     "pending": 0,
-    "failures": 5,
-    "start": "2018-05-17T16:20:26.672Z",
-    "end": "2018-05-17T16:20:35.489Z",
-    "duration": 8817,
-    "testsRegistered": 3,
-    "passPercent": 66.7,
+    "failures": 1,
+    "start": "2018-05-22T12:09:52.967Z",
+    "end": "2018-05-22T12:10:01.875Z",
+    "duration": 8908,
+    "testsRegistered": 1,
+    "passPercent": 400,
     "pendingPercent": 0,
-    "other": 0,
-    "hasOther": false,
+    "other": 1,
+    "hasOther": true,
     "skipped": -4,
     "hasSkipped": false,
-    "passPercentClass": "warning",
+    "passPercentClass": "success",
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "6554f1a0-e3cb-458e-a9c0-0d6d1ea8c537",
-    "title": "Users API unit test",
-    "fullFile": "C:\\College\\Year 4\\Web Services\\assignment-two\\test\\testUsersAPI.js",
-    "file": "\\test\\testUsersAPI.js",
+    "uuid": "c0a804fe-9c6f-403c-804d-079a0884b161",
+    "title": "Members API unit test",
+    "fullFile": "C:\\College\\Year 4\\Web Services\\assignment-two\\test\\testMembersAPI.js",
+    "file": "\\test\\testMembersAPI.js",
     "beforeHooks": [],
     "afterHooks": [],
     "tests": [
       {
         "title": "should return collection of JSON documents",
-        "fullTitle": "Users API unit test should return collection of JSON documents",
+        "fullTitle": "Members API unit test should return collection of JSON documents",
         "timedOut": false,
-        "duration": 1008,
-        "state": "failed",
-        "speed": "slow",
-        "pass": false,
-        "fail": true,
-        "pending": false,
-        "code": "// calling home page api\n(0, _supertest2.default)(_index.app).get('/api/users').expect('Content-type', /json/).expect(200) // This is the HTTP response\n.end(function (err, res) {\n  // HTTP status should be 200\n  res.status.should.equal(200);\n  done();\n});",
-        "err": {
-          "message": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (C:\\College\\Year 4\\Web Services\\assignment-two\\test\\testMembersAPI.js)",
-          "estack": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (C:\\College\\Year 4\\Web Services\\assignment-two\\test\\testMembersAPI.js)\n    at Test.<anonymous> (C:/College/Year 4/Web Services/assignment-two/test/testMembersAPI.js:95:15)\n    at Test.assert (node_modules\\supertest\\lib\\test.js:181:6)\n    at Server.assert (node_modules\\supertest\\lib\\test.js:131:12)\n    at emitCloseNT (net.js:1655:8)\n    at _combinedTickCallback (internal/process/next_tick.js:135:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)"
-        },
-        "isRoot": false,
-        "uuid": "d5e26b87-d965-4831-ac58-7ed2fe449e21",
-        "isHook": false,
-        "skipped": false
-      },
-      {
-        "title": "should register a user",
-        "fullTitle": "Users API unit test should register a user",
-        "timedOut": false,
-        "duration": 0,
+        "duration": 21,
         "pass": false,
         "fail": false,
         "pending": false,
-        "code": "// post to /api/contacts\n(0, _supertest2.default)(_index.app).post('/api/users').query({ action: 'register' }).send({ username: 'Contact 99', password: 'test1' }).expect('Content-type', /json/).expect(201).end(function (err, res) {\n  res.status.should.equal(201);\n  res.body.success.should.equal(true);\n  done();\n});",
+        "code": "(0, _supertest2.default)(_index.app).get('/api/members').expect('Content-type', /json/).expect(200).end(function (err, res) {\n  res.status.should.equal(200);\n  done();\n});",
         "err": {},
         "isRoot": false,
-        "uuid": "8dcd4f72-134b-480f-98e5-d7de7bed1aa1",
-        "isHook": false,
-        "skipped": true
-      },
-      {
-        "title": "should authenticate a user",
-        "fullTitle": "Users API unit test should authenticate a user",
-        "timedOut": false,
-        "duration": 0,
-        "pass": false,
-        "fail": false,
-        "pending": false,
-        "code": "// post to /api/contacts\n(0, _supertest2.default)(_index.app).post('/api/users').send({ username: 'user1', password: 'test1' }).expect('Content-type', /json/).expect(201).end(function (err, res) {\n  res.status.should.equal(200);\n  res.body.token.substring(0, 3).should.equal('JWT');\n  done();\n});",
-        "err": {},
-        "isRoot": false,
-        "uuid": "beff156c-c869-4533-827f-ca737c8ba23d",
+        "uuid": "a8a630ea-290c-4e24-a614-4faa10ca0149",
         "isHook": false,
         "skipped": true
       }
     ],
     "suites": [],
     "passes": [],
-    "failures": [
-      "d5e26b87-d965-4831-ac58-7ed2fe449e21"
-    ],
+    "failures": [],
     "pending": [],
     "skipped": [
-      "8dcd4f72-134b-480f-98e5-d7de7bed1aa1",
-      "beff156c-c869-4533-827f-ca737c8ba23d"
+      "a8a630ea-290c-4e24-a614-4faa10ca0149"
     ],
-    "duration": null,
+    "duration": 21,
     "root": false,
     "rootEmpty": false,
-    "_timeout": 170000
+    "_timeout": 140000
   },
   "copyrightYear": 2018
 }

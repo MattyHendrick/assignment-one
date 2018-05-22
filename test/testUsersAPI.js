@@ -3,7 +3,7 @@ import {app} from './../index.js';
 import should from 'should'; // eslint-disable-line
 // UNIT test begin
 describe('Users API unit test', function() {
-  this.timeout(170000); // eslint-disable-line
+  this.timeout(140000); // eslint-disable-line
   // #1 return a collection of json documents
   it('should return collection of JSON documents', function(done) {
     // calling home page api
@@ -20,7 +20,8 @@ describe('Users API unit test', function() {
 
   // #2 add a user
   it('should register a user', function(done) {
-    // post to /api/contacts
+    // post to /api/members
+    this.timeout(140000);
     supertest(app)
     .post('/api/users')
     .query({action: 'register'})
@@ -36,7 +37,8 @@ describe('Users API unit test', function() {
 
   // #3 login a user
   it('should authenticate a user', function(done) {
-    // post to /api/contacts
+    // post to /api/members
+    this.timeout(140000);
     supertest(app)
     .post('/api/users')
     .send({username: 'user1', password: 'test1'})
